@@ -1,0 +1,12 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/home/wildan/Apps/arduino-1.6.0/libraries/TinyGPS++/examples/KitchenSink"
+		}
+	]
+}

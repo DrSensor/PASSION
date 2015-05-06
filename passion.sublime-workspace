@@ -1,0 +1,895 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Seria",
+				"SerialGPS"
+			],
+			[
+				"sens",
+				"sensor_msgs"
+			],
+			[
+				"gps",
+				"gps_msg"
+			],
+			[
+				"seons",
+				"sensor_msgs"
+			],
+			[
+				"Ser",
+				"SerialGPS"
+			],
+			[
+				"Seri",
+				"SERIAL_GPS"
+			],
+			[
+				"pm",
+				"PMB_688"
+			],
+			[
+				"nam",
+				"namespace〔variable〕"
+			],
+			[
+				"di",
+				"div"
+			],
+			[
+				"div",
+				"div"
+			],
+			[
+				"id",
+				"id	Attr"
+			],
+			[
+				"view",
+				"viewMap"
+			],
+			[
+				"da",
+				"dataGas"
+			],
+			[
+				"ch",
+				"chartGas"
+			],
+			[
+				"dataGa",
+				"dataGauge"
+			],
+			[
+				"lis",
+				"listener_signal"
+			],
+			[
+				"vie",
+				"view_battery"
+			],
+			[
+				"addColumn",
+				"addColumn('number"
+			],
+			[
+				"gaug",
+				"gaugeData〔variable〕"
+			],
+			[
+				"speed",
+				"speed_balancer"
+			],
+			[
+				"w_",
+				"w_right"
+			],
+			[
+				"digi",
+				"digitalWrite"
+			],
+			[
+				"sub",
+				"subscribe"
+			],
+			[
+				"Lo",
+				"LockCb"
+			],
+			[
+				"sele",
+				"Selenoid"
+			],
+			[
+				"islo",
+				"isLock_msg"
+			],
+			[
+				"incl",
+				"include	Arduino include syslib"
+			],
+			[
+				"flui",
+				"fluidTempPub"
+			],
+			[
+				"env",
+				"envTempPub"
+			],
+			[
+				"envTemp",
+				"envTemp_msg"
+			],
+			[
+				"tempte",
+				"temperature"
+			],
+			[
+				"TEMPE",
+				"Temperature"
+			],
+			[
+				"ENV",
+				"envTemp_msg"
+			],
+			[
+				"envte",
+				"envTempPub"
+			],
+			[
+				"publ",
+				"publish"
+			],
+			[
+				"envHum",
+				"envHumPub"
+			],
+			[
+				"fluid",
+				"fluidTemp_msg"
+			],
+			[
+				"temp_",
+				"fluidTemp_msg"
+			],
+			[
+				"imu",
+				"imu_msg"
+			],
+			[
+				"pu",
+				"publish"
+			],
+			[
+				"reada",
+				"readAltitude"
+			],
+			[
+				"d",
+				"d"
+			],
+			[
+				"ROS",
+				"ROS_DEBUG_NAMED"
+			],
+			[
+				"com",
+				"compass_msg"
+			],
+			[
+				"in",
+				"include	Arduino include syslib"
+			],
+			[
+				"senso",
+				"sensor_msgs"
+			],
+			[
+				"bmp",
+				"BMP085"
+			],
+			[
+				"inc",
+				"include	Arduino include syslib"
+			],
+			[
+				"bm",
+				"BMP085"
+			],
+			[
+				"be",
+				"begin"
+			],
+			[
+				"hmc",
+				"HMC58X3"
+			],
+			[
+				"HM",
+				"HMC58X3"
+			],
+			[
+				"de",
+				"define	Arduino Macro define"
+			],
+			[
+				"end",
+				"endif"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "sketch/sketch.ino",
+			"settings":
+			{
+				"buffer_size": 24453,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "passion.sublime-project",
+			"settings":
+			{
+				"buffer_size": 168,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/wildan/Apps/arduino-1.6.0/libraries/TinyGPS++/examples/KitchenSink/KitchenSink.ino",
+			"settings":
+			{
+				"buffer_size": 5512,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/main.js",
+			"settings":
+			{
+				"buffer_size": 5321,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/wildan/Documents/test.html",
+			"settings":
+			{
+				"buffer_size": 1903,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/index.html",
+			"settings":
+			{
+				"buffer_size": 5817,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 369.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"paca",
+				"Package Control: Install Package"
+			],
+			[
+				"git:",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"cd",
+			"ls",
+			"list",
+			"cd"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/wildan/PASSION"
+	],
+	"file_history":
+	[
+		"/home/wildan/PASSION/passion.sublime-project",
+		"/home/wildan/PASSION/sketch/sketch.ino",
+		"/home/wildan/Apps/arduino-1.6.0/libraries/HMC5883L/HMC5883L.h",
+		"/home/wildan/Apps/arduino-1.6.0/libraries/FreeSixIMU/FreeSixIMU.h",
+		"/home/wildan/.ssh/id_rsa",
+		"/home/wildan/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/wildan/Apps/arduino-1.6.0/examples/01.Basics/Blink/Blink.ino",
+		"/home/wildan/Apps/arduino-1.6.0/examples/02.Digital/Button/Button.ino",
+		"/home/wildan/.config/sublime-text-3/Packages/sublime_enhanced.sh",
+		"/home/wildan/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/wildan/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/wildan/.config/sublime-text-3/Packages/SideBarEnhancements/Default (Linux).sublime-keymap",
+		"/home/wildan/.config/sublime-text-3/Packages/User/Package Control.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"serial.begin",
+			"serial",
+			": '/",
+			": ",
+			"areas",
+			"valGrad",
+			"motorspeed",
+			"speed",
+			"fc28",
+			"tempC",
+			"samplingInterval",
+			"first_heading",
+			"heading",
+			"KP_WHEEL",
+			"error",
+			"compass",
+			"EMS_30A",
+			"#include <",
+			"hmc58x",
+			"imu",
+			"linear_acceleration"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			": namespace + '/",
+			"H_BRIDGE",
+			"",
+			"angular_velocity"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "sketch/sketch.ino",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 24453,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								497,
+								497
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Arduino-like IDE/Arduino.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 162.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "passion.sublime-project",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 168,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16,
+								16
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/wildan/Apps/arduino-1.6.0/libraries/TinyGPS++/examples/KitchenSink/KitchenSink.ino",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5512,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1639,
+								1639
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Arduino-like IDE/Arduino.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5321,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								419,
+								419
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1458.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/wildan/Documents/test.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1903,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								209,
+								209
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 432.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5817,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1058,
+								1058
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1512.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.1427785491.3407698":
+	{
+		"height": 112.0
+	},
+	"output.1427789519.7810369":
+	{
+		"height": 112.0
+	},
+	"output.build|/home/wildan/Apps/arduino-1.6.0/examples/02.Digital/Button|1428142499.2789462":
+	{
+		"height": 178.0
+	},
+	"output.build|/home/wildan/Apps/arduino-1.6.0/examples/02.Digital/Button|1428142530.1520965":
+	{
+		"height": 178.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1427789425.8903735":
+	{
+		"height": 112.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1427789442.937966":
+	{
+		"height": 112.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1427789559.116119":
+	{
+		"height": 112.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1427789624.107396":
+	{
+		"height": 112.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428182989.3988786":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428183131.403241":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428183195.4585474":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428183340.3135703":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428183379.467027":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428191208.03795":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428191346.024964":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428192975.1691551":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428193890.2911675":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428371391.8748806":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428374852.0782557":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428374876.4602926":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428374902.9356704":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428375040.914589":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428375054.7768788":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428375077.4298098":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428375102.1071098":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428375107.212835":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428376327.163282":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428376346.4009984":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428376360.5422382":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428376440.0007784":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428376879.479367":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428377887.5399923":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428378663.928754":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428379229.0453956":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428380624.761572":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428380640.6424375":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428381200.377762":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428383013.6551948":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1428383052.347194":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1429399963.0052078":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430758888.5698445":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430758933.0606623":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430759620.8891478":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430759805.7067251":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430759812.8428855":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430759816.941539":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430760016.1308923":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430760066.6349435":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430760483.5707297":
+	{
+		"height": 118.0
+	},
+	"output.build|/home/wildan/PASSION/sketch|1430760534.3592136":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 118.0
+	},
+	"output.sketch":
+	{
+		"height": 112.0
+	},
+	"output.stino_log":
+	{
+		"height": 129.0
+	},
+	"output.upload|/home/wildan/Apps/arduino-1.6.0/examples/02.Digital/Button|1428142533.9203527":
+	{
+		"height": 178.0
+	},
+	"pinned_build_system": "",
+	"project": "passion.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 213.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
