@@ -330,6 +330,9 @@ ros::Subscriber<std_msgs::Bool> subLock("gasLock", &LockCb);
 
 void setup()
 {
+	Serial.begin(57600);
+	delay(5000);
+	Serial.println("starting........................");
 	nh.initNode();
 
 	//wait until you are actually connected
