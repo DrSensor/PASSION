@@ -24,7 +24,7 @@
 #define DHT11 			"DHT11"
 #define DS18B20 		"DS18B20"
 #define FC28 			"FC28"
-#define HC_SR04 		"HC_SR04"
+#define HC_SR04 		"HC_SR04"			// ROS not yet
 #define HS_805BB		"HS_805BB"
 #define H_BRIDGE		"H_BRIDGE"			//need testing
 #define Selenoid 		"Selenoid"
@@ -238,11 +238,17 @@ TinyGPSPlus gps;
 #endif
 //-------------------------------------------------------------------------------------------------
 
-#define ROS_DEBUG_NAMED(name, string, ...) (log(0, name, string, ##__VA_ARGS__))
-#define ROS_INFO_NAMED(name, string, ...) (log(1, name, string, ##__VA_ARGS__))
-#define ROS_WARN_NAMED(name, string, ...) (log(2, name, string, ##__VA_ARGS__))
-#define ROS_FATAL_NAMED(name, string, ...) (log(3, name, string, ##__VA_ARGS__))
-#define ROS_ERROR_NAMED(name, string, ...) (log(4, name, string, ##__VA_ARGS__))
+#define ROS_DEBUG_NAMED(name, string, ...)
+#define ROS_INFO_NAMED(name, string, ...)
+#define ROS_WARN_NAMED(name, string, ...)
+#define ROS_FATAL_NAMED(name, string, ...)
+#define ROS_ERROR_NAMED(name, string, ...)
+
+// #define ROS_DEBUG_NAMED(name, string, ...) (log(0, name, string, ##__VA_ARGS__))
+// #define ROS_INFO_NAMED(name, string, ...) (log(1, name, string, ##__VA_ARGS__))
+// #define ROS_WARN_NAMED(name, string, ...) (log(2, name, string, ##__VA_ARGS__))
+// #define ROS_FATAL_NAMED(name, string, ...) (log(3, name, string, ##__VA_ARGS__))
+// #define ROS_ERROR_NAMED(name, string, ...) (log(4, name, string, ##__VA_ARGS__))
 
 char *log_buf, *string;
 void log(unsigned int verbosity, const char *name, const char *fmt, ...) {
@@ -330,16 +336,22 @@ ros::Subscriber<std_msgs::Bool> subLock("gasLock", &LockCb);
 
 void setup()
 {
-	Serial.begin(57600);
-	delay(5000);
-	Serial.println("starting........................");
+	// Serial.begin(57600);
+	// delay(5000);
+	// Serial.println("starting........................");
 	nh.initNode();
 
-	//wait until you are actually connected
-	while (!nh.connected() ){
-		nh.spinOnce();
-	}
-	Wire.begin();
+	ROS_INFO_NAMED("HELOO", "Starting");
+	// wait until you are actually connected
+	// while (!nh.connected() ){
+	// 	nh.spinOnce();
+	// }
+	nh.advertise(rangePub);
+	range_msg.radiation_type = sensor_msgs::Range::INFRARED;
+  range_msg.header.frame_id =  "/ir_ranger";
+  range_msg.field_of_view = 0.01;
+  range_msg.min_range = 0.03;
+  range_msg.max_range = 0.4;
 
 #ifdef PMB_688
 	SerialGPS.begin(GPS_BAUD);
@@ -376,6 +388,10 @@ void setup()
   	}
 #endif
 
+#ifdef DHT11
+	nh.advertise(envHumPub);
+#endif
+
 #ifdef MQ_Calibration
   	Ro135 = MQCalibration(PIN_MQ135, COppm, RL, CO_135Curve);
   	Ro136 = MQCalibration(PIN_MQ136, COppm, RL, CO_136Curve);
@@ -384,6 +400,7 @@ void setup()
 #endif
 
 #ifdef DS18B20
+	Wire.begin();
   	sensors.begin();
 	for(int i = 0; i < sensors.getDeviceCount(); i++)	// Loop through each device, print out address
 	{
@@ -598,43 +615,44 @@ void loop()
 #endif
 
 #ifdef DHT11
-  if (dht11.acquiring())
-  {
-	switch (dht11.getStatus()) // debug
+	if (! dht11.acquiring())
 	{
-		case IDDHTLIB_OK:
-		break;
-		case IDDHTLIB_ERROR_CHECKSUM:
-			ROS_ERROR_NAMED(DHT11, "Checksum error");
-		break;
-		case IDDHTLIB_ERROR_ISR_TIMEOUT:
-			ROS_ERROR_NAMED(DHT11, "ISR Time out error");
-		break;
-		case IDDHTLIB_ERROR_RESPONSE_TIMEOUT:
-			ROS_ERROR_NAMED(DHT11, "Response time out error");
-		break;
-		case IDDHTLIB_ERROR_DATA_TIMEOUT:
-			ROS_ERROR_NAMED(DHT11, "Data time out error");
-		break;
-		case IDDHTLIB_ERROR_ACQUIRING:
-			ROS_DEBUG_NAMED(DHT11, "Acquiring");
-		break;
-		case IDDHTLIB_ERROR_DELTA:
-			ROS_WARN_NAMED(DHT11, "Delta time to small");
-		break;
-		case IDDHTLIB_ERROR_NOTSTARTED:
-			ROS_ERROR_NAMED(DHT11, "Not started");
-		break;
-		default:
-			ROS_ERROR_NAMED(DHT11, "Unknown error");
-		break;
+		switch (dht11.getStatus()) // debug
+		{
+			case IDDHTLIB_OK:
+			break;
+			case IDDHTLIB_ERROR_CHECKSUM:
+				ROS_ERROR_NAMED(DHT11, "Checksum error");
+			break;
+			case IDDHTLIB_ERROR_ISR_TIMEOUT:
+				ROS_ERROR_NAMED(DHT11, "ISR Time out error");
+			break;
+			case IDDHTLIB_ERROR_RESPONSE_TIMEOUT:
+				ROS_ERROR_NAMED(DHT11, "Response time out error");
+			break;
+			case IDDHTLIB_ERROR_DATA_TIMEOUT:
+				ROS_ERROR_NAMED(DHT11, "Data time out error");
+			break;
+			case IDDHTLIB_ERROR_ACQUIRING:
+				ROS_DEBUG_NAMED(DHT11, "Acquiring");
+			break;
+			case IDDHTLIB_ERROR_DELTA:
+				ROS_WARN_NAMED(DHT11, "Delta time to small");
+			break;
+			case IDDHTLIB_ERROR_NOTSTARTED:
+				ROS_ERROR_NAMED(DHT11, "Not started");
+			break;
+			default:
+				ROS_ERROR_NAMED(DHT11, "Unknown error");
+			break;
+		}
+		envHum_msg.relative_humidity = dht11.getHumidity();
+		envTemp_msg.temperature = dht11.getCelsius();
+		double dew = dht11.getDewPoint();
+		envHumPub.publish(&envHum_msg);
+		envTempPub.publish(&envTemp_msg);
 	}
-	envHum_msg.relative_humidity = dht11.getHumidity();
-	envTemp_msg.temperature = dht11.getCelsius();
-	double dew = dht11.getDewPoint();
-	envHumPub.publish(&envHum_msg);
-	envTempPub.publish(&envTemp_msg);
-}
+	dht11.acquire();
 #endif
 //------------------------------------------------------------------------------------
 ledBlink();
