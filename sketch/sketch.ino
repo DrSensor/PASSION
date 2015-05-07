@@ -20,16 +20,16 @@
 
 // Enabler
 #define MQ_Series		"MQ_Series"
-#define PH_meter		"PH_meter"
+#define PH_meter		"PH_meter"			// ROS not yet
 #define DHT11 			"DHT11"
 #define DS18B20 		"DS18B20"
-#define FC28 			"FC28"
+// #define FC28 			"FC28"
 #define HC_SR04 		"HC_SR04"			// ROS not yet
-#define HS_805BB		"HS_805BB"
-#define H_BRIDGE		"H_BRIDGE"			//need testing
-#define Selenoid 		"Selenoid"
+#define HS_805BB		"HS_805BB"			// IK solver?
+#define H_BRIDGE		"H_BRIDGE"			// need testing
+#define Selenoid 		"Selenoid"			// please change to service
 #define IMU 			"IMU"
-#define HMC58X3  		"HMC58X3"
+#define HMC58X3  		"HMC58X3"			// ROS not yet
 #define BMP085 			"BMP085"
 #define PMB_688 		"PMB_688"			// http://learn.parallax.com/KickStart/28500
 
@@ -150,8 +150,8 @@ uint8_t currentSensor = 0;          // Keeps track of which sensor is active.
 #endif
 
 #ifdef MQ_Series
-#define         READ_SAMPLE_INTERVAL         (50)    //define how many samples you are going to take in normal operation
-#define         READ_SAMPLE_TIMES            (5)     //define the time interal(in milisecond) between each samples in 
+#define READ_SAMPLE_INTERVAL 	50    //define how many samples you are going to take in normal operation
+#define READ_SAMPLE_TIMES		5     //define the time interal(in milisecond) between each samples in 
 
 float CO2_135Curve[2] = {113.7105289, -3.019713765}; //MQ135
 float CO_135Curve[2] = {726.7809737, -4.040111669}; //MQ135
@@ -165,8 +165,8 @@ float CO_136Curve[2] = {2142.297846, -2.751369226}; //MQ136 http://china-total.c
 float H2S_136Curve[2] = {0, 0}; //MQ136 http://www.sensorica.ru/pdf/MQ-136.pdf
 float NH4_136Curve[2] = {0, 0}; //MQ136 http://www.sensorica.ru/pdf/MQ-136.pdf
 
-float Ro135 = 2.511; //MQ135 2.51 this has to be tuned 10K Ohm
-float Ro136; 		//MQ136 ... this has to be tuned 10K Ohm
+float Ro135 = 2.511; 	//MQ135 2.51 this has to be tuned 10K Ohm
+float Ro136 = Ro135; 	//MQ136 ... this has to be tuned 10K Ohm
 float RL = 0.990; 	//FC-22
 #endif
 
@@ -346,12 +346,6 @@ void setup()
 	// while (!nh.connected() ){
 	// 	nh.spinOnce();
 	// }
-	nh.advertise(rangePub);
-	range_msg.radiation_type = sensor_msgs::Range::INFRARED;
-  range_msg.header.frame_id =  "/ir_ranger";
-  range_msg.field_of_view = 0.01;
-  range_msg.min_range = 0.03;
-  range_msg.max_range = 0.4;
 
 #ifdef PMB_688
 	SerialGPS.begin(GPS_BAUD);
@@ -386,6 +380,12 @@ void setup()
   	for (uint8_t i = 1; i < NUM_SR04; i++){ // Set the starting time for each sensor.
   		pingTimer[i] = pingTimer[i - 1] + PING_INTERVAL;
   	}
+	range_msg.radiation_type = sensor_msgs::Range::INFRARED;
+	range_msg.header.frame_id =  "/sonar_ranger";
+	range_msg.field_of_view = 0.01;
+	range_msg.min_range = 0.03;
+	range_msg.max_range = 0.4;
+  	nh.advertise(rangePub);
 #endif
 
 #ifdef DHT11
@@ -651,8 +651,9 @@ void loop()
 		double dew = dht11.getDewPoint();
 		envHumPub.publish(&envHum_msg);
 		envTempPub.publish(&envTemp_msg);
+	} else {
+		dht11.acquire();
 	}
-	dht11.acquire();
 #endif
 //------------------------------------------------------------------------------------
 ledBlink();
@@ -743,31 +744,17 @@ double avergearray(int* arr, int number)
 }
 
 #ifdef HC_SR04
-/****************** sr04_getdistane ****************************************
-Output:  the calculated sensor distance in cm
-************************************************************************************/
-unsigned long sr04_getdistane(int trigPin, int echoPin)
-{
-	/* The following trigPin/echoPin cycle is used to determine the
-	distance of the nearest object by bouncing soundwaves off of it. */
-
-	digitalWrite(trigPin, LOW);
-	delayMicroseconds(2);
-	digitalWrite(trigPin, HIGH);
-	delayMicroseconds(10);
-
-	digitalWrite(trigPin, LOW);
-
-	return (pulseIn(echoPin, HIGH) / 58.2);
-}
-
 void echoCheck() { // If ping received, set the sensor distance to array.
 	if (sonars[currentSensor].check_timer())
-	cm[currentSensor] = sonars[currentSensor].ping_result / US_ROUNDTRIP_CM;
+		cm[currentSensor] = sonars[currentSensor].ping_result / US_ROUNDTRIP_CM;
+
+	range_msg.range = cm[0];
+    range_msg.header.stamp = nh.now();
 }
 
 void oneSensorCycle() { // Sensor ping cycle complete, do something with the results.
   // The following code would be replaced with your code that does something with the ping results.
+  rangePub.publish(&range_msg);
 }
 #endif
 
