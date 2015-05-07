@@ -530,6 +530,8 @@ void loop()
 	compass_msg.magnetic_field.x = scaled.XAxis;
 	compass_msg.magnetic_field.y = scaled.YAxis;
 	compass_msg.magnetic_field.z = scaled.ZAxis;
+	compass_msg.header.stamp = nh.now();
+	compassPub.publish(&compass_msg);
 
 	// Calculate heading when the magnetometer is level, then correct for signs of axis.
 	heading = atan2(scaled.YAxis, scaled.XAxis) + 0.0457;  // declinationAngle = 0.0457
