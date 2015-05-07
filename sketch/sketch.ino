@@ -497,7 +497,7 @@ void loop()
 		// {
 		// 	gps.course.deg();
 		// }	    
-		
+		gps_msg.header.stamp = nh.now();
 		gpsPub.publish(&gps_msg);
 	}
 #endif
@@ -520,6 +520,7 @@ void loop()
 	imu_msg.orientation.z = imu_quaternation[2];
 	imu_msg.orientation.w = imu_quaternation[3];
 
+	imu_msg.header.stamp = nh.now();
 	imuPub.publish(&imu_msg);
 #endif
 
@@ -551,7 +552,9 @@ void loop()
 // Calculate altitude assuming 'standard' barometric
 // pressure of 1013.25 millibar = 101325 Pascal
 	envPres_msg.fluid_pressure = bmp.readPressure();
+	envPres_msg.header.stamp = nh.now();
 	envTemp_msg.temperature = bmp.readTemperature();
+	envTemp_msg.header.stamp = nh.now();
 	envPresPub.publish(&envPres_msg);
 	envTempPub.publish(&envTemp_msg);
 	ROS_DEBUG_NAMED(BMP085, "Temperature = %f*C, Pressure = %fPa, Altitude = %fm", 
@@ -569,6 +572,7 @@ void loop()
 		if(sensors.getAddress(tempDeviceAddress, i))
 		{
 			fluidTemp_msg.temperature = sensors.getTempC(tempDeviceAddress);
+			fluidTemp_msg.header.stamp = nh.now();
 			fluidTempPub.publish(&fluidTemp_msg);
 		} else {
 			ROS_ERROR_NAMED(DS18B20, "Device %d is disconnect", i);
@@ -647,7 +651,9 @@ void loop()
 			break;
 		}
 		envHum_msg.relative_humidity = dht11.getHumidity();
+		envHum_msg.header.stamp = nh.now();
 		envTemp_msg.temperature = dht11.getCelsius();
+		envTemp_msg.header.stamp = nh.now();
 		double dew = dht11.getDewPoint();
 		envHumPub.publish(&envHum_msg);
 		envTempPub.publish(&envTemp_msg);
