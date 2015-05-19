@@ -1,8 +1,3 @@
-// var chartGas = new google.visualization.LineChart($('#gas').get(0));	
-// var dataGas = new google.visualization.DataTable();
-// dataGas.addColumn('number', "CO"+"2".sub());
-// dataGas.addColumn('number', "H"+"2".sub()+"S");
-
 // var throttleGauge = new google.visualization.Gauge($('#gauge').get(0));
 // var dataGauge = new google.visualization.DataTable();
 // dataGauge.addColumn('number', "Throttle");
@@ -12,17 +7,23 @@ var viewTemperature;
 var viewBattery;
 var viewSignal;
 var viewTachometer;
+var viewTrottle;
+var viewGas;
 var viewMap;
 
 var listenerCompass;
 var listenerBattery;
 var listenerSignal;
 var listenerTemperature;
-var listenerTachometer;
+var listenerIMU;
+var listenerJoystick;
 var listenerGas;
 var navigation;
 
 function initView() {
+	///////////////////
+	/// Steelseries //
+	///////////////////
 	// Define some sections
 	var sections = [steelseries.Section(0, 25, 'rgba(0, 0, 220, 0.3)'),
 		steelseries.Section(25, 50, 'rgba(0, 220, 0, 0.3)'),
@@ -86,10 +87,117 @@ function initView() {
 		odometerParams: {digits: 5, value: odoValue}
 	});
 
+	///////////////
+	/// Chartjs //
+	///////////////
+	var ctx = document.getElementById("gas").getContext("2d");
+	var data = {
+		labels: ["CO2", "H2S", "NH4"],
+		datasets: [
+			{
+				label: "Max",
+				fillColor: "rgba(220,220,220,0.2)",
+				strokeColor: "rgba(220,220,220,1)",
+				pointColor: "rgba(220,220,220,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(220,220,220,1)",
+				data: []
+			},
+			{
+				label: "Min",
+				fillColor: "rgba(151,187,205,0.2)",
+				strokeColor: "rgba(151,187,205,1)",
+				pointColor: "rgba(151,187,205,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(151,187,205,1)",
+				data: []
+			}
+		]
+	};
+	var options = {
+		//Boolean - Whether to show lines for each scale point
+		scaleShowLine : true,
+
+		//Boolean - Whether we show the angle lines out of the radar
+		angleShowLineOut : true,
+
+		//Boolean - Whether to show labels on the scale
+		scaleShowLabels : false,
+
+		// Boolean - Whether the scale should begin at zero
+		scaleBeginAtZero : true,
+
+		//String - Colour of the angle line
+		angleLineColor : "rgba(0,0,0,.1)",
+
+		//Number - Pixel width of the angle line
+		angleLineWidth : 1,
+
+		//String - Point label font declaration
+		pointLabelFontFamily : "'Arial'",
+
+		//String - Point label font weight
+		pointLabelFontStyle : "normal",
+
+		//Number - Point label font size in pixels
+		pointLabelFontSize : 12,
+
+		//String - Point label font colour
+		pointLabelFontColor : "#666",
+
+		//Boolean - Whether to show a dot for each point
+		pointDot : true,
+
+		//Number - Radius of each point dot in pixels
+		pointDotRadius : 3,
+
+		//Number - Pixel width of point dot stroke
+		pointDotStrokeWidth : 1,
+
+		//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+		pointHitDetectionRadius : 20,
+
+		//Boolean - Whether to show a stroke for datasets
+		datasetStroke : true,
+
+		//Number - Pixel width of dataset stroke
+		datasetStrokeWidth : 2,
+
+		//Boolean - Whether to fill the dataset with a colour
+		datasetFill : true,
+
+		//String - A legend template
+		legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+	};
+	viewGas = new Chart(ctx).Radar(data, options);
+
+	var target = document.getElementById('throttle'); // your canvas element
+	var opts = {
+		lines: 12, // The number of lines to draw
+		angle: 0.15, // The length of each line
+		lineWidth: 0.44, // The line thickness
+		pointer: {
+			length: 0.9, // The radius of the inner circle
+			strokeWidth: 0.049, // The rotation offset
+			color: '#000000' // Fill color
+		},
+		limitMax: 'false',   // If true, the pointer will not go past the end of the gauge
+		colorStart: '#6FADCF',   // Colors
+		colorStop: '#8FC0DA',    // just experiment with them
+		strokeColor: '#E0E0E0',   // to see which ones work best for you
+		generateGradient: true,
+	};
+	var viewTrottle = new Gauge(target).setOptions(opts); // create sexy gauge!
+	viewTrottle.maxValue = 100; // set max gauge value
+	viewTrottle.percentColors = [[0.0, "#a9d70b" ], [0.50, "#f9c802"], [1.0, "#ff0000"]];
+	viewTrottle.set(0); // set actual value
+
 	viewMap = new ROS2D.Viewer({
 		divID : 'map',
-		width : 750,
-		height : 800
+		width : 320,
+		height : 240
 	});
 }
 
@@ -134,10 +242,16 @@ function initROS(namespace) {
 		messageType : 'std_msgs/Int16'
 	});
 
-	listenerTachometer = new ROSLIB.Topic({
+	listenerIMU = new ROSLIB.Topic({
 		ros : ros,
 		name : namespace + '/imu',
 		messageType : 'sensor_msgs/Imu'
+	});
+
+	listenerJoystick = new ROSLIB.Topic({
+		ros : ros,
+		name : namespace + '/joy',
+		messageType : 'joy_msgs/joy'
 	});
 
 	listenerGas = new ROSLIB.Topic({
@@ -175,18 +289,22 @@ function subscribe() {
 		// listener.unsubscribe();
 	});
 
-	listenerTachometer.subscribe(function(message) {
+	listenerIMU.subscribe(function(message) {
 		viewTachometer.setOdoValue(odoValue++);
 		viewTachometer.setValueAnimated(message.liniear.x*3.6);
+				viewTrottle.set(0); // set actual value
+
+		// listener.unsubscribe();
+	});
+
+	listenerJoystick.subscribe(function(message) {
+		viewTrottle.set(message.analog.y); // set actual value
 		// listener.unsubscribe();
 	});
 
 	listenerGas.subscribe(function(message) {
-		// dataGas.addRow([message.data]);
-		// chartGas.draw(dataGas, {
-		// 	title: "Gas"
-		// });
-		// // listener.unsubscribe();
+		viewGas.addData([message.data, message.data], "CO2");
+		// listener.unsubscribe();
 	});
 }
 

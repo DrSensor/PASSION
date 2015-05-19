@@ -1,0 +1,16 @@
+<launch>
+	<arg name="name" default="passion"/>
+	<arg name="port" default="8081"/> <!-- avoid to use apache default port -->
+	<arg name="webpath" default="$(find web_apps)/www"/> <!-- package webroot -->
+
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
+		<arg name="port" value="8083"/>
+	</include>
+
+	<node pkg="web_video_server" type="web_video_server"  name="$(arg name)_camera" output="screen">
+		<param name="port" type="int" value="8085" />
+	</node>
+
+	<node pkg="roswww" type="webserver.py" name="$(arg name)" args="--name $(arg name) --port $(arg port) --webpath $(arg webpath)">
+	</node>
+</launch>

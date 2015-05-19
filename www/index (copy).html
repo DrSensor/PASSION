@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- EXTERNAL LIBS-->
+    <script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/vendor/npm.js"></script>
+    <script type="text/javascript" src="js/vendor/tween.js"></script>
+    <script type="text/javascript" src="js/vendor/steelseries.js"></script>
+    <script type="text/javascript" src="js/vendor/roslib.js"></script>
+
+    <script type="text/javascript" src="js/plugin.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <!-- EXAMPLE SCRIPT -->
+    <script>
+
+      // onload callback
+      function drawChart() {
+
+        var public_key = 'dZ4EVmE8yGCRGx5XRX1W';
+
+        // JSONP request
+        var jsonData = $.ajax({
+          url: 'https://data.sparkfun.com/output/' + public_key + '.json',
+          data: {page: 1},
+          dataType: 'jsonp',
+        }).done(function (results) {
+
+          var data = new google.visualization.DataTable();
+
+          data.addColumn('datetime', 'Time');
+          data.addColumn('number', 'Temp');
+          data.addColumn('number', 'Wind Speed MPH');
+
+          $.each(results, function (i, row) {
+            data.addRow([
+              (new Date(row.timestamp)),
+              parseFloat(row.tempf),
+              parseFloat(row.windspeedmph)
+            ]);
+          });
+
+          var chart = new google.visualization.LineChart($('#chart').get(0));
+
+          chart.draw(data, {
+            title: 'Wimp Weather Station'
+          });
+
+        });
+
+      }
+
+      // load chart lib
+      google.load('visualization', '1', {
+        packages: ['corechart']
+      });
+
+      // call drawChart once google charts is loaded
+      google.setOnLoadCallback(drawChart);
+
+    </script>
+
+  </head>
+  <body>
+    blabalblabalb
+    <div id="gas" class="hide" />
+    <div id="camera">
+      <div class="topLeftHorizontal">
+        <div id="battery" />
+        <div id="signal" />
+      </div>
+      <div class="topRightVertical">
+        <div id="compass" />
+        <div id="thermometer">
+      </div>
+      <canvas id="map" class="bottomRight" />
+      <div class="bottomLeftHorizontal">
+        <div id="tachometer" />
+        <div id="throttle" />
+      </div>
+    </div>
+  </body>
+</html>
